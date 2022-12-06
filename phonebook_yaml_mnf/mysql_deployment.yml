@@ -33,7 +33,7 @@ spec:
           containerPort: 3306
         volumeMounts:
           - name: mysql-db-storage
-            mountPath: '/mnt/d/AWS_Devops_Path/DevOps_MyProjects/projects_local_works/project-206-phonebook/deployments'            
+            mountPath: 'var/lib/mysql'
         env:
           - name: MYSQL_ROOT_PASSWORD
             valueFrom:
