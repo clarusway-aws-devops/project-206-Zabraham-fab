@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result-deployment
+spec:
+  replicas: 3
+  # minReadySeconds: 10
+  # strategy:
+  #   type: RollingUpdate 
+  #   rollingUpdate:
+  #     maxUnavailable: 1 
+  #     maxSurge: 1    
+  selector:
+    matchLabels:
+      name: result
+  template:
+    metadata:
+      labels:
+        name: result
+    spec:
+      containers: 
+        - name: result
+          image: zabra/image-for-result-app:1.0
+          imagePullPolicy: Always
+          # resources:
+          #   limits:
+          #     memory: "128Mi"
+          #     cpu: "500m"          
+          ports: 
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: database-configmap
+                  key: MYSQL_DATABASE
+            - name: MYSQL_DATABASE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: database-configmap
+                  key: MYSQL_DATABASE_HOST
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysecret
+                  key: password
+                  optional: false
+            - name: MYSQL_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: database-configmap
+                  key: MYSQL_DATABASE_USER
+      restartPolicy: Always
