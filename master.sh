@@ -38,7 +38,7 @@ chown ubuntu:ubuntu /home/ubuntu/.kube/config
 su - ubuntu -c 'kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml'
 
 cd ~
-TOKEN="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"
+TOKEN="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 git clone https://$TOKEN@github.com/clarusway-aws-devops/project-206-Zabraham-fab.git
 
 cd project-206-Zabraham-fab/phonebook_yaml_mnf/
