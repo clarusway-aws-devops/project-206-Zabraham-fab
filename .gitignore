@@ -33,5 +33,5 @@ override.tf.json
 .terraformrc
 terraform.rc
 secrets
-secret.yml
+./phonbook_yaml_mnf/secret.yml
 secret
